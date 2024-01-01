@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { PortfolioComponent } from './portfolio.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('Portfolio List Component', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [PortfolioComponent]
+    imports: [PortfolioComponent, HttpClientModule]
   }));
 
   it('should create the portfolio list', () => {
