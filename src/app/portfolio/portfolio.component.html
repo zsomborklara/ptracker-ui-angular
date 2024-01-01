@@ -1,0 +1,13 @@
+<h2>{{portfolio.name}}</h2>
+
+<p><em>Constituents: </em></p>
+<ul>
+  <li *ngFor="let constituent of constituents">
+    {{constituent.instrument}} - {{constituent.number}}db @ 10$
+    <button type="button" (click)="selectConstituent(constituent)">
+      History
+    </button>
+  </li>
+</ul>
+
+ <!-- app-constituent-detail *ngIf="selectedConstituent" [constituent]="selectedConstituent"></app-constituent-detail-->

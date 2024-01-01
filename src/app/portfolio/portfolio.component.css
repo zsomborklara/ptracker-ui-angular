@@ -1,0 +1,16 @@
+ul {
+    color: red;
+    margin:15px 0 10px 0;
+    display: table;
+    table-layout: fixed;
+    border-spacing: 0px;
+    width: 300px
+}
+
+ul li {
+    padding: 5px;
+}
+
+ul li button{
+    float: right;
+}
