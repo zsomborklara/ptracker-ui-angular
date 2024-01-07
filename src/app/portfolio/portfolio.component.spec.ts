@@ -3,6 +3,7 @@ import { PortfolioComponent } from './portfolio.component';
 import { PortfolioService } from './portfolio.service';
 import { Observable, of } from 'rxjs';
 import { Portfolio } from "./portfolio";
+import { MOCK_PORTFOLIO } from './mock-portfolio';
 
 let portfolioServiceStub:  Partial<PortfolioService>;
 
@@ -12,13 +13,9 @@ describe('Portfolio List Component', () => {
   let fixture: ComponentFixture<PortfolioComponent>;
 
   beforeEach(() => {
-    const portfolio =  {
-      name: "My Portfolio",
-      id : 1,
-      constituents : [{instrument: "IBM", number: 20}, {instrument: "SP500", number: 80}]
-    }
+ 
     portfolioServiceStub = {
-      getPortfolio() : Observable<Portfolio> {  return of(portfolio);}
+      getPortfolio() : Observable<Portfolio> {  return of(MOCK_PORTFOLIO);}
     };
     TestBed.configureTestingModule({
       imports: [PortfolioComponent],
@@ -36,7 +33,7 @@ describe('Portfolio List Component', () => {
   it(`should have portfolio default name as 'EMPTY'`, () => {
     const fixture = TestBed.createComponent(PortfolioComponent);
     const portfolioList = fixture.componentInstance;
-    expect(portfolioList.portfolio.name).toEqual('EMPTY');
+    expect(portfolioList.portfolio.name).toEqual('EMPTY'); // without fixture.detectChanges(); databinding does not happen 
   });
 
   it('should render portfolio name', () => {

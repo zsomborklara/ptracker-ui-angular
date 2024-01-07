@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Logger } from "../common/service/logger.service";
-import { Portfolio } from "./portfolio";
+import { EMPTY, Portfolio } from "./portfolio";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from 'rxjs/operators';
@@ -8,7 +8,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class PortfolioService {
     private ptrackerBackendUrl: string;
-    private empty: Portfolio = {name: "EMPTY", id: 0, constituents: []};
   
     constructor(
       private http: HttpClient,
@@ -21,7 +20,7 @@ export class PortfolioService {
       this.logger.log('Loading portfolio');
       return this.http.get<Portfolio>(this.ptrackerBackendUrl)
       .pipe(
-        catchError(this.handleError<Portfolio>('getPortfolio', this.empty))
+        catchError(this.handleError<Portfolio>('getPortfolio', EMPTY))
       );
     }
 
