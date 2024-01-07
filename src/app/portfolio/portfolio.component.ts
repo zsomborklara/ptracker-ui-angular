@@ -9,8 +9,7 @@ import { Constituent } from "./constituent";
     selector:    'app-portfolio-details',
     templateUrl: './portfolio.component.html',
     styleUrls:   [ './portfolio.component.css' ],
-    imports:     [ NgFor, NgIf, PortfolioComponent ],
-    providers:  [ PortfolioService ]
+    imports:     [ NgFor, NgIf ]
   })
 export class PortfolioComponent implements OnInit {
     portfolio: Portfolio = {name: "EMPTY", id: 0, constituents: []};
@@ -20,8 +19,9 @@ export class PortfolioComponent implements OnInit {
     constructor(private service: PortfolioService) { }
   
     ngOnInit() {
-      this.portfolio = this.service.getPortfolio();
-      this.constituents = this.portfolio.constituents;
+      this.service.getPortfolio().subscribe(val => {
+        this.portfolio = val;
+        this.constituents = val.constituents;});
     }
   
     selectConstituent(constituent: Constituent) { this.selectedConstituent = constituent; }
