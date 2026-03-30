@@ -10,10 +10,13 @@ describe('Portfolio Service', () => {
 
 let httpClientSpy: jasmine.SpyObj<HttpClient>;
 let portfolioService: PortfolioService;
+let loggerSpy: jasmine.SpyObj<Logger>;
 
 beforeEach(() => {
   httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-  portfolioService = new PortfolioService(httpClientSpy, new Logger());
+  loggerSpy = jasmine.createSpyObj('Logger', ['log']);
+  spyOn(console, 'error').and.stub();
+  portfolioService = new PortfolioService(httpClientSpy, loggerSpy);
 });
 
 it('should return expected portfolio (HttpClient called once)', (done: DoneFn) => {

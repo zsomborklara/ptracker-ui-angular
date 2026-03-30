@@ -6,8 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent],
-    imports: [TopBarComponent, PortfolioComponent, HttpClientModule]
+    imports: [AppComponent, TopBarComponent, PortfolioComponent, HttpClientModule]
   }));
 
   it('should create the app', () => {
